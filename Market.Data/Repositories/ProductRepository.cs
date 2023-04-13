@@ -8,8 +8,12 @@ namespace Market.Data.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly AppDbContext dbContext = new AppDbContext();
+        private readonly AppDbContext dbContext;
 
+        public ProductRepository(AppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
 
         public async Task DeleteAsync(long id)
         {

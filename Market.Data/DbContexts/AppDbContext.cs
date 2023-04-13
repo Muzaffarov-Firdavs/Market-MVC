@@ -1,16 +1,17 @@
 ﻿using Market.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Market.Data.DbContexts
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
         {
-            string path = "Server=(localdb)\\mssqllocaldb;Database=Market;Trusted_Connection=True;";
-            optionsBuilder.UseSqlServer(path);
+
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }

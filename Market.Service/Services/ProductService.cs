@@ -9,8 +9,12 @@ namespace Market.Service.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository productRepostiry = new ProductRepository();
+        private readonly IProductRepository productRepostiry;
 
+        public ProductService(IProductRepository productRepostiry)
+        {
+            this.productRepostiry = productRepostiry;
+        }
 
         public async Task<ProductForUserDto> CreateAsync(ProductForUserDto product)
         {
